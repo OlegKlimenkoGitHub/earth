@@ -1,0 +1,71 @@
+﻿@model Battle.WebUI.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="container">
+<hgroup class="title">
+    <br><br>
+    <h3>@ViewBag.Title.</h3>
+    <h4>Create a new account.</h4>
+</hgroup>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword)
+            </li>
+        </ol>
+        <input type="submit" value="Register" />
+    </fieldset>
+    <br>
+    <p id="result"></p>    
+    <div id="progressBar"></div>    
+}
+
+</div>
+
+<script type="text/javascript">
+    function StartInvoicing() {
+        var progressNotifier = $.connection.progressHub;
+
+        // client-side sendMessage function that will be called from the server-side
+        progressNotifier.client.sendMessage = function (message, count) {
+            // update progress
+            UpdateProgress(message, count);
+            //alert(message);
+        };
+
+        // establish the connection to the server and start server-side operation
+        $.connection.hub.start().done(function () {
+            // call the method CallLongOperation defined in the Hub
+            progressNotifier.server.getCountAndMessage();
+        });
+    }
+    function UpdateProgress(message, count) {
+        var result = $("#result");
+        result.html(message);
+        $("#progressBar").progressbar({
+            value: count,
+            max: 176
+        });
+
+    }
+    $(document).ready(function () {
+        StartInvoicing();
+    })
+</script>

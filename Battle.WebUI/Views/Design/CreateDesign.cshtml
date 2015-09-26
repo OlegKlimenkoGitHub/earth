@@ -1,0 +1,28 @@
+﻿@model Battle.Domain.Concrete.Design
+
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm())
+{
+        @:Welcome Commander! <br>
+        @:Here you can create a new project of fighting mechanism.
+        <hr>
+        <div class="float-left">
+            <img id="imgMech" src="~/Images/mech4.gif" style="left: 100px; width: 200px; height: 200px" />
+        </div>
+        <div class="float-right" style="width:250px;">
+            <br />
+            <b>Name</b> @Html.EditorFor(m => m.name)<br>
+            <b>Shield</b> @Html.EditorFor(m => m.shield)<br>
+            <b>Guns</b> @Html.EditorFor(m => m.guns)<br>
+            <b>Caliber</b> @Html.EditorFor(m => m.caliber)<br>
+        </div>
+    
+    <input id="btnCreateDesign" type="submit" value="Create project" style="width: 480px" />    
+}
+
+
+
+

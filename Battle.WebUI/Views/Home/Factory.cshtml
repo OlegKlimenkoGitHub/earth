@@ -1,0 +1,19 @@
+﻿@model Battle.WebUI.Models.Game
+
+@using (Html.BeginForm("CreateMech", "Home"))
+{
+    @:Order Commander!
+    <br>
+    @:What mechanismes need to be made in the next year?
+    <br>
+    <br>
+    @:design: 
+    @Html.DropDownList("designesDropDown", new SelectList(Model.designes, "id", "name"))
+    <br>
+    @:quantity: 
+    @Html.EditorFor(m => m.manufacture.qnt)
+    <br>
+    @:total weight: 
+    <br>
+    <input id="btnCreateMech" type="submit" value="Create Mechanism" style="width: 480px" />
+}

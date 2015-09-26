@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ef47b40f8e624153812d1c593a8519b7" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="GCModel.Army" Width="1.5" PointX="5.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GCModel.Battlemech" Width="1.5" PointX="7.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GCModel.Country" Width="1.5" PointX="8.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="GCModel.Design" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GCModel.Gamer" Width="1.5" PointX="2.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GCModel.Manufacture" Width="1.5" PointX="10.5" PointY="11.625" IsExpanded="true" />
+        <AssociationConnector Association="GCModel.FK_Army_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="GCModel.FK_Army_Gamers" ManuallyRouted="false" />
+        <AssociationConnector Association="GCModel.FK_Battlemechs_Army" ManuallyRouted="false" />
+        <AssociationConnector Association="GCModel.FK_Battlemechs_Design" ManuallyRouted="false" />
+        <AssociationConnector Association="GCModel.FK_Country_Gamers" ManuallyRouted="false" />
+        <AssociationConnector Association="GCModel.FK_Manufacture_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="GCModel.FK_Design_Gamers" ManuallyRouted="false" />
+        <AssociationConnector Association="GCModel.FK_Manufacture_Design" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GCModel.CountryInit" Width="1.5" PointX="2" PointY="7.875" />
+        <EntityTypeShape EntityType="GCModel.Ev" Width="1.5" PointX="10.5" PointY="15.625" />
+        <AssociationConnector Association="GCModel.FK_Events_Country" />
+        <AssociationConnector Association="GCModel.FK_Events_Gamers" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

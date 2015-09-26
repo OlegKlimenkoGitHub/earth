@@ -1,0 +1,14 @@
+﻿@model List<Battle.Domain.Concrete.Ev>
+@{
+    Layout = null;
+}
+
+Good morning, Commander! The report is ready! <hr>
+@if (@Model == null || @Model.Count == 0) { 
+    @: The day passed peacefully...
+}
+<div style="height:350px; overflow-y:auto;">
+    @foreach (var item in @Model) { 
+        @: @item.message <br>
+    }
+</div>

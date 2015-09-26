@@ -1,0 +1,13 @@
+﻿@model Battle.WebUI.Models.Game
+
+@using (Html.BeginForm())
+{
+    @: Welcome Commander! <br>
+    @: Create a new project of fighting mechanism: <br>
+    @: name: @Html.EditorFor(m => m.design.name)<br>
+    @: shield: @Html.EditorFor(m => m.design.shield)<br>
+    @: guns: @Html.EditorFor(m => m.design.guns)<br>
+    @: caliber: @Html.EditorFor(m => m.design.caliber)<br>
+    <input id="btnCreateDesign" type="submit" value="Create project" style="width: 480px" />
+    <img id="imgMech" src="~/Images/mech4.gif" style="left: 100px; width: 150px; height: 150px" />
+}

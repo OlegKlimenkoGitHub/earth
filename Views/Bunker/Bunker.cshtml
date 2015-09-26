@@ -1,0 +1,30 @@
+﻿@model Battle.WebUI.Models.Bunker
+
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm())
+{
+    @:Commander! <br>
+            
+    if (Model.listOfMechs.Count > 0){
+        @:Battle Mechs ready for the job! <br><br>
+        @:Send all to @Html.DropDownList("sendAllTo", new SelectList(Model.listOfCountries, "rid", "nameEng"), "")
+        <hr />
+        <div style="height:230px; overflow-y:auto;">
+            @foreach (var item in Model.listOfMechs) {
+                if (item == null) { continue; }
+                <b> @item.name  </b>
+                @:   send to     
+                @Html.DropDownList("sendOneTo", new SelectList(Model.listOfCountries, "rid", "nameEng"), "")
+                <br>
+            }
+        </div>
+        <br>
+        <input id="btnSendMechs" type="submit" value="Send Mechs" style="width: 450px" />                    
+    } else {
+        @:We do not have troops in the bunker. <br>
+    }
+
+}

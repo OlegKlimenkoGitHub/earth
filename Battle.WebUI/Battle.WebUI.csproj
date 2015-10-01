@@ -232,9 +232,7 @@
     <Compile Include="Models\Bunker.cs" />
     <Compile Include="Models\Factory.cs" />
     <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\GameOld.cs" />
     <Compile Include="Models\Journal.cs" />
-    <Compile Include="Models\Map.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

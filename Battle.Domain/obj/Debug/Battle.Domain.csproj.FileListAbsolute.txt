@@ -16,3 +16,4 @@ D:\!Csharp Мои проекты\!Игры\Battle\Battle\Battle.Domain\bin\Debug
 D:\!Csharp Мои проекты\!Игры\Battle\Battle\Battle.Domain\bin\Debug\EntityFramework.SqlServer.xml
 D:\!Csharp Мои проекты\!Игры\Battle\Battle\Battle.Domain\obj\Debug\Battle.Domain.dll
 D:\!Csharp Мои проекты\!Игры\Battle\Battle\Battle.Domain\obj\Debug\Battle.Domain.pdb
+D:\!Csharp Мои проекты\!Игры\Battle\Battle\Battle.Domain\obj\Debug\Battle.Domain.csprojResolveAssemblyReference.cache

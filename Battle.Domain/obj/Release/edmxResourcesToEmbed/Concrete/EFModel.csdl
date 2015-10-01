@@ -1,0 +1,595 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Army">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ridcountry" Type="Int32" />
+    <Property Name="ridgamer" Type="Int32" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_Army_Country" FromRole="Army" ToRole="Country" />
+    <NavigationProperty Name="Gamer" Relationship="Self.FK_Army_Gamers" FromRole="Army" ToRole="Gamers" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK_Army_UserProfile" FromRole="Army" ToRole="UserProfile" />
+    <NavigationProperty Name="Battlemechs" Relationship="Self.FK_Battlemechs_Army" FromRole="Army" ToRole="Battlemechs" />
+  </EntityType>
+  <EntityType Name="Battlemech">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="riddesign" Type="Int32" />
+    <Property Name="ridarmy" Type="Int32" />
+    <Property Name="qnt" Type="Int32" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Army" Relationship="Self.FK_Battlemechs_Army" FromRole="Battlemechs" ToRole="Army" />
+    <NavigationProperty Name="Design" Relationship="Self.FK_Battlemechs_Design" FromRole="Battlemechs" ToRole="Design" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK_Battlemechs_UserProfile" FromRole="Battlemechs" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" />
+    <Property Name="cod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="nameRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="nameEng" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="color" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="population" Type="Int32" />
+    <Property Name="mineral" Type="Int32" />
+    <Property Name="ridgamer" Type="Int32" />
+    <Property Name="populationreal" Type="Int32" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Armies" Relationship="Self.FK_Army_Country" FromRole="Country" ToRole="Army" />
+    <NavigationProperty Name="Gamer" Relationship="Self.FK_Country_Gamers" FromRole="Country" ToRole="Gamers" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK_Country_UserProfile" FromRole="Country" ToRole="UserProfile" />
+    <NavigationProperty Name="Manufactures" Relationship="Self.FK_Manufacture_Country" FromRole="Country" ToRole="Manufacture" />
+    <NavigationProperty Name="Evs" Relationship="GCModel.FK_Events_Country" FromRole="Country" ToRole="Ev" />
+  </EntityType>
+  <EntityType Name="Design">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="shield" Type="Int32" />
+    <Property Name="guns" Type="Int32" />
+    <Property Name="caliber" Type="Int32" />
+    <Property Name="weight" Type="Int32" />
+    <Property Name="ridgamer" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="Battlemechs" Relationship="Self.FK_Battlemechs_Design" FromRole="Design" ToRole="Battlemechs" />
+    <NavigationProperty Name="Gamer" Relationship="Self.FK_Design_Gamers" FromRole="Design" ToRole="Gamers" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK_Design_UserProfile" FromRole="Design" ToRole="UserProfile" />
+    <NavigationProperty Name="Manufactures" Relationship="Self.FK_Manufacture_Design" FromRole="Design" ToRole="Manufacture" />
+  </EntityType>
+  <EntityType Name="Gamer">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="color" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="Armies" Relationship="Self.FK_Army_Gamers" FromRole="Gamers" ToRole="Army" />
+    <NavigationProperty Name="Countries" Relationship="Self.FK_Country_Gamers" FromRole="Gamers" ToRole="Country" />
+    <NavigationProperty Name="Designs" Relationship="Self.FK_Design_Gamers" FromRole="Gamers" ToRole="Design" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK_Gamers_UserProfile" FromRole="Gamers" ToRole="UserProfile" />
+    <NavigationProperty Name="Evs" Relationship="GCModel.FK_Events_Gamers" FromRole="Gamer" ToRole="Ev" />
+  </EntityType>
+  <EntityType Name="Manufacture">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" />
+    <Property Name="ridcountry" Type="Int32" />
+    <Property Name="riddesign" Type="Int32" />
+    <Property Name="qnt" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_Manufacture_Country" FromRole="Manufacture" ToRole="Country" />
+    <NavigationProperty Name="Design" Relationship="Self.FK_Manufacture_Design" FromRole="Manufacture" ToRole="Design" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK_Manufacture_UserProfile" FromRole="Manufacture" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Armies" Relationship="Self.FK_Army_UserProfile" FromRole="UserProfile" ToRole="Army" />
+    <NavigationProperty Name="Battlemechs" Relationship="Self.FK_Battlemechs_UserProfile" FromRole="UserProfile" ToRole="Battlemechs" />
+    <NavigationProperty Name="Countries" Relationship="Self.FK_Country_UserProfile" FromRole="UserProfile" ToRole="Country" />
+    <NavigationProperty Name="Designs" Relationship="Self.FK_Design_UserProfile" FromRole="UserProfile" ToRole="Design" />
+    <NavigationProperty Name="Gamers" Relationship="Self.FK_Gamers_UserProfile" FromRole="UserProfile" ToRole="Gamers" />
+    <NavigationProperty Name="Manufactures" Relationship="Self.FK_Manufacture_UserProfile" FromRole="UserProfile" ToRole="Manufacture" />
+    <NavigationProperty Name="Evs" Relationship="GCModel.FK_Events_UserProfile" FromRole="UserProfile" ToRole="Ev" />
+  </EntityType>
+  <Association Name="FK_Army_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="Army" Type="Self.Army" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="rid" />
+      </Principal>
+      <Dependent Role="Army">
+        <PropertyRef Name="ridcountry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Army_Gamers">
+    <End Role="Gamers" Type="Self.Gamer" Multiplicity="0..1" />
+    <End Role="Army" Type="Self.Army" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gamers">
+        <PropertyRef Name="rid" />
+      </Principal>
+      <Dependent Role="Army">
+        <PropertyRef Name="ridgamer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Army_UserProfile">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+    <End Role="Army" Type="Self.Army" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Army">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Battlemechs_Army">
+    <End Role="Army" Type="Self.Army" Multiplicity="0..1" />
+    <End Role="Battlemechs" Type="Self.Battlemech" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Army">
+        <PropertyRef Name="rid" />
+      </Principal>
+      <Dependent Role="Battlemechs">
+        <PropertyRef Name="ridarmy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Battlemechs_Design">
+    <End Role="Design" Type="Self.Design" Multiplicity="0..1" />
+    <End Role="Battlemechs" Type="Self.Battlemech" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Design">
+        <PropertyRef Name="rid" />
+      </Principal>
+      <Dependent Role="Battlemechs">
+        <PropertyRef Name="riddesign" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Battlemechs_UserProfile">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+    <End Role="Battlemechs" Type="Self.Battlemech" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Battlemechs">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Country_Gamers">
+    <End Role="Gamers" Type="Self.Gamer" Multiplicity="0..1" />
+    <End Role="Country" Type="Self.Country" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gamers">
+        <PropertyRef Name="rid" />
+      </Principal>
+      <Dependent Role="Country">
+        <PropertyRef Name="ridgamer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Country_UserProfile">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+    <End Role="Country" Type="Self.Country" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Country">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Manufacture_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="Manufacture" Type="Self.Manufacture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="rid" />
+      </Principal>
+      <Dependent Role="Manufacture">
+        <PropertyRef Name="ridcountry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Design_Gamers">
+    <End Role="Gamers" Type="Self.Gamer" Multiplicity="0..1" />
+    <End Role="Design" Type="Self.Design" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gamers">
+        <PropertyRef Name="rid" />
+      </Principal>
+      <Dependent Role="Design">
+        <PropertyRef Name="ridgamer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Design_UserProfile">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+    <End Role="Design" Type="Self.Design" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Design">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Manufacture_Design">
+    <End Role="Design" Type="Self.Design" Multiplicity="0..1" />
+    <End Role="Manufacture" Type="Self.Manufacture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Design">
+        <PropertyRef Name="rid" />
+      </Principal>
+      <Dependent Role="Manufacture">
+        <PropertyRef Name="riddesign" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gamers_UserProfile">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+    <End Role="Gamers" Type="Self.Gamer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Gamers">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Manufacture_UserProfile">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+    <End Role="Manufacture" Type="Self.Manufacture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Manufacture">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Armies" EntityType="Self.Army" />
+    <EntitySet Name="Battlemechs" EntityType="Self.Battlemech" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="Designs" EntityType="Self.Design" />
+    <EntitySet Name="Gamers" EntityType="Self.Gamer" />
+    <EntitySet Name="Manufactures" EntityType="Self.Manufacture" />
+    <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
+    <AssociationSet Name="FK_Army_Country" Association="Self.FK_Army_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Army" EntitySet="Armies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Army_Gamers" Association="Self.FK_Army_Gamers">
+      <End Role="Gamers" EntitySet="Gamers" />
+      <End Role="Army" EntitySet="Armies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Army_UserProfile" Association="Self.FK_Army_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="Army" EntitySet="Armies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Battlemechs_Army" Association="Self.FK_Battlemechs_Army">
+      <End Role="Army" EntitySet="Armies" />
+      <End Role="Battlemechs" EntitySet="Battlemechs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Battlemechs_Design" Association="Self.FK_Battlemechs_Design">
+      <End Role="Design" EntitySet="Designs" />
+      <End Role="Battlemechs" EntitySet="Battlemechs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Battlemechs_UserProfile" Association="Self.FK_Battlemechs_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="Battlemechs" EntitySet="Battlemechs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Country_Gamers" Association="Self.FK_Country_Gamers">
+      <End Role="Gamers" EntitySet="Gamers" />
+      <End Role="Country" EntitySet="Countries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Country_UserProfile" Association="Self.FK_Country_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="Country" EntitySet="Countries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Manufacture_Country" Association="Self.FK_Manufacture_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Manufacture" EntitySet="Manufactures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Design_Gamers" Association="Self.FK_Design_Gamers">
+      <End Role="Gamers" EntitySet="Gamers" />
+      <End Role="Design" EntitySet="Designs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Design_UserProfile" Association="Self.FK_Design_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="Design" EntitySet="Designs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Manufacture_Design" Association="Self.FK_Manufacture_Design">
+      <End Role="Design" EntitySet="Designs" />
+      <End Role="Manufacture" EntitySet="Manufactures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gamers_UserProfile" Association="Self.FK_Gamers_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="Gamers" EntitySet="Gamers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Manufacture_UserProfile" Association="Self.FK_Manufacture_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="Manufacture" EntitySet="Manufactures" />
+    </AssociationSet>
+    <FunctionImport Name="GetColors" ReturnType="Collection(GCModel.GetColors_Result)" />
+    <FunctionImport Name="GetCountryProperties" ReturnType="Collection(GCModel.GetCountryProperties_Result)">
+      <Parameter Name="cod" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="CountryInits" EntityType="GCModel.CountryInit" />
+    <FunctionImport Name="GetUserColors" ReturnType="Collection(GCModel.GetUserColors_Result)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ClearUserTables">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="IncreaseMinerals">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetCompCountries" EntitySet="Countries" ReturnType="Collection(GCModel.Country)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetAllCountries" EntitySet="Countries" ReturnType="Collection(GCModel.Country)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetArmiesInCountry" EntitySet="Armies" ReturnType="Collection(GCModel.Army)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="CountryRid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetMechsInArmy" EntitySet="Battlemechs" ReturnType="Collection(GCModel.Battlemech)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="ArmyRid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetCountryById" EntitySet="Countries" ReturnType="Collection(GCModel.Country)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="CountryId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="MoveMechs">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="ArmyFromRid" Mode="In" Type="Int32" />
+      <Parameter Name="ArmyToRid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetArmyInCountryForGamer" EntitySet="Armies" ReturnType="Collection(GCModel.Army)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="CountryRid" Mode="In" Type="Int32" />
+      <Parameter Name="GamerRid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetGamerByRid" EntitySet="Gamers" ReturnType="Collection(GCModel.Gamer)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="GamerRid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetReadyArmiesInCountry" EntitySet="Armies" ReturnType="Collection(GCModel.Army)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="CountryRid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ClearUsersEvents">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Evs" EntityType="GCModel.Ev" />
+    <AssociationSet Name="FK_Events_Country" Association="GCModel.FK_Events_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Ev" EntitySet="Evs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Events_Gamers" Association="GCModel.FK_Events_Gamers">
+      <End Role="Gamer" EntitySet="Gamers" />
+      <End Role="Ev" EntitySet="Evs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Events_UserProfile" Association="GCModel.FK_Events_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="Ev" EntitySet="Evs" />
+    </AssociationSet>
+    <FunctionImport Name="GetReportForCountry" EntitySet="Evs" ReturnType="Collection(GCModel.Ev)">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="CountryRid" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GetColors_Result">
+    <Property Type="String" Name="cod" Nullable="true" />
+    <Property Type="String" Name="color" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetCountryProperties_Result">
+    <Property Type="String" Name="cname" Nullable="true" />
+    <Property Type="String" Name="gname" Nullable="true" />
+    <Property Type="Int32" Name="population" Nullable="true" />
+    <Property Type="Int32" Name="mineral" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="CountryInit">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id" Type="Int32" />
+    <Property Name="cod" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="nameRus" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="color" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="population" Type="Int32" />
+    <Property Name="mineral" Type="Int32" />
+    <Property Name="ridgamer" Type="Int32" />
+    <Property Name="populationreal" Type="Int32" />
+    <Property Name="nameEng" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="GetUserColors_Result">
+    <Property Type="String" Name="cod" Nullable="true" />
+    <Property Type="String" Name="color" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetCompCountries_Result">
+    <Property Type="Int32" Name="rid" Nullable="false" />
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="String" Name="cod" Nullable="true" />
+    <Property Type="String" Name="nameRus" Nullable="true" />
+    <Property Type="String" Name="nameEng" Nullable="true" />
+    <Property Type="String" Name="color" Nullable="true" />
+    <Property Type="Int32" Name="population" Nullable="true" />
+    <Property Type="Int32" Name="mineral" Nullable="true" />
+    <Property Type="Int32" Name="ridgamer" Nullable="true" />
+    <Property Type="Int32" Name="populationreal" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="Int32" Name="rid1" Nullable="false" />
+    <Property Type="Int32" Name="id1" Nullable="true" />
+    <Property Type="String" Name="name" Nullable="true" />
+    <Property Type="String" Name="color1" Nullable="true" />
+    <Property Type="String" Name="type" Nullable="true" />
+    <Property Type="String" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="UserId1" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetAllCountries_Result">
+    <Property Type="Int32" Name="rid" Nullable="false" />
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="String" Name="cod" Nullable="true" />
+    <Property Type="String" Name="nameRus" Nullable="true" />
+    <Property Type="String" Name="nameEng" Nullable="true" />
+    <Property Type="String" Name="color" Nullable="true" />
+    <Property Type="Int32" Name="population" Nullable="true" />
+    <Property Type="Int32" Name="mineral" Nullable="true" />
+    <Property Type="Int32" Name="ridgamer" Nullable="true" />
+    <Property Type="Int32" Name="populationreal" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetArmiesInCountry_Result">
+    <Property Type="Int32" Name="rid" Nullable="false" />
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="String" Name="name" Nullable="true" />
+    <Property Type="Int32" Name="ridcountry" Nullable="true" />
+    <Property Type="Int32" Name="ridgamer" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetMechsInArmy_Result">
+    <Property Type="Int32" Name="rid" Nullable="false" />
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="String" Name="name" Nullable="true" />
+    <Property Type="Int32" Name="riddesign" Nullable="true" />
+    <Property Type="Int32" Name="ridarmy" Nullable="true" />
+    <Property Type="Int32" Name="qnt" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetCountryById_Result">
+    <Property Type="Int32" Name="rid" Nullable="false" />
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="String" Name="cod" Nullable="true" />
+    <Property Type="String" Name="nameRus" Nullable="true" />
+    <Property Type="String" Name="nameEng" Nullable="true" />
+    <Property Type="String" Name="color" Nullable="true" />
+    <Property Type="Int32" Name="population" Nullable="true" />
+    <Property Type="Int32" Name="mineral" Nullable="true" />
+    <Property Type="Int32" Name="ridgamer" Nullable="true" />
+    <Property Type="Int32" Name="populationreal" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetArmyInCountryForGamer_Result">
+    <Property Type="Int32" Name="rid" Nullable="false" />
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="String" Name="name" Nullable="true" />
+    <Property Type="Int32" Name="ridcountry" Nullable="true" />
+    <Property Type="Int32" Name="ridgamer" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetGamerByRid_Result">
+    <Property Type="Int32" Name="rid" Nullable="false" />
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="String" Name="name" Nullable="true" />
+    <Property Type="String" Name="color" Nullable="true" />
+    <Property Type="String" Name="type" Nullable="true" />
+    <Property Type="String" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetReadyArmiesInCountry_Result">
+    <Property Type="Int32" Name="rid" Nullable="false" />
+    <Property Type="Int32" Name="id" Nullable="true" />
+    <Property Type="String" Name="name" Nullable="true" />
+    <Property Type="Int32" Name="ridcountry" Nullable="true" />
+    <Property Type="Int32" Name="ridgamer" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Ev">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ridcountry" Type="Int32" />
+    <Property Name="ridgamer" Type="Int32" />
+    <Property Name="turn" Type="Int32" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="GCModel.FK_Events_Country" FromRole="Ev" ToRole="Country" />
+    <NavigationProperty Name="Gamer" Relationship="GCModel.FK_Events_Gamers" FromRole="Ev" ToRole="Gamer" />
+    <NavigationProperty Name="UserProfile" Relationship="GCModel.FK_Events_UserProfile" FromRole="Ev" ToRole="UserProfile" />
+  </EntityType>
+  <Association Name="FK_Events_Country">
+    <End Type="GCModel.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="GCModel.Ev" Role="Ev" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="rid" />
+      </Principal>
+      <Dependent Role="Ev">
+        <PropertyRef Name="ridcountry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Events_Gamers">
+    <End Type="GCModel.Gamer" Role="Gamer" Multiplicity="0..1" />
+    <End Type="GCModel.Ev" Role="Ev" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gamer">
+        <PropertyRef Name="rid" />
+      </Principal>
+      <Dependent Role="Ev">
+        <PropertyRef Name="ridgamer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Events_UserProfile">
+    <End Type="GCModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+    <End Type="GCModel.Ev" Role="Ev" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Ev">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="GetReportForCountry_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="message" Nullable="true" />
+    <Property Type="Int32" Name="ridcountry" Nullable="true" />
+    <Property Type="Int32" Name="ridgamer" Nullable="true" />
+    <Property Type="Int32" Name="turn" Nullable="true" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+  </ComplexType>
+</Schema>

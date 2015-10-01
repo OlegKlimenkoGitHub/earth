@@ -1,0 +1,9 @@
+D:\!Csharp Мои проекты\!Игры\Battle\Battle\Battle.Domain\bin\Release\Battle.Domain.dll.config
+D:\!Csharp Мои проекты\!Игры\Battle\Battle\Battle.Domain\bin\Release\Battle.Domain.dll
+D:\!Csharp Мои проекты\!Игры\Battle\Battle\Battle.Domain\bin\Release\Battle.Domain.pdb
+D:\!Csharp Мои проекты\!Игры\Battle\Battle\Battle.Domain\bin\Release\EntityFramework.dll
+D:\!Csharp Мои проекты\!Игры\Battle\Battle\Battle.Domain\bin\Release\EntityFramework.SqlServer.dll
+D:\!Csharp Мои проекты\!Игры\Battle\Battle\Battle.Domain\bin\Release\EntityFramework.xml
+D:\!Csharp Мои проекты\!Игры\Battle\Battle\Battle.Domain\bin\Release\EntityFramework.SqlServer.xml
+D:\!Csharp Мои проекты\!Игры\Battle\Battle\Battle.Domain\obj\Release\Battle.Domain.dll
+D:\!Csharp Мои проекты\!Игры\Battle\Battle\Battle.Domain\obj\Release\Battle.Domain.pdb

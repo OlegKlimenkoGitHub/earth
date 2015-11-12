@@ -20,7 +20,6 @@ Project history:
 ================================
 
 11.11.2015
-
 Animation robot is visible when the page is loaded - fixed.
 
 01.10.2015

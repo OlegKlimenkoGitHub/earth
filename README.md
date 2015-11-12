@@ -15,267 +15,189 @@ Branch: master  earth/_describe.me
 @OlegKlimenkoGitHubOlegKlimenkoGitHub 2 minutes ago describe
 1 contributor
 RawBlameHistory     264 lines (220 sloc)  9.91 KB
-Что реализовано в текущей версии:
+
+Project history:
 ================================
 
+11.11.2015
+Animation robot is visible when the page is loaded - fixed.
+
+01.10.2015
+Placed applications online.
+
 26.09.2015
-- Добавил ProgressBar создания игрового мира при регистрации
+I make a redirect th death-page to the Game\Index
+Added ProgressBar while creating the game world at registration
 
 25.09.2015
-- Улучшить внешний вид
-  - Login
-- При нажатии на страну делается reload страницы.
-  Однако не Index, а последней открытой страницы.
-- Сделать About
-- Сделать Rules
-- Улучшить внешний вид
-  - Design
-  - Factory
-- Позволяет строить свои механизмы в чужой стране за чужие ресурсы.
+Make a section About.
+Make a section Rules.
+Fixed a bug. Allows you to build your arrangements in a foreign country for foreign resources.
 
 24.09.2015
-- Создать отдельные контроллеры для 
-  - Battles (Reports)
-  Создать отдельный класс Reports(id, country, time).
-  Хранить данные только за последний ход.
-  При NextTurn обновлять.  
-- добавил таблицу evs для хранения событий и класс Journal.
-- Вставить анимационную гифку бабахающего робота
-- Добавить ProgressBar в NextTurn
-
-23.09.2015
-+ Слишком долго делается ход (4 минуты ровно) - уменьшить до 1 минуты
-  + Постройка мехов - 15 секунд
-  + Слишком долго двигаются армии  14.47.01 - 14.47.02 = 1 секунда
-  + Сражения 14.47.02 - 14.47.34 = 32 секунды (на пяти странах)
-  + Слишком много итераций на одно сражение - уменьшить
-    + Строить только одного меха
-    + Уменьшить количество атакующих стран до 5.
-    + При подборе сражающихся армий сразу отсеивать пустые
-  + Переписать сложные запросы через хранимые процедуры - где это возможно
-- По нажатию на стране (на карте) - менять текущую страну. 
-- Почему срабатывает Application end до полной загрузки страницы?  на перезапуск уходит минута. 
-  Все запросы сделал синхронными.
+Created a controller "Battles".
+Created a controller "Reports".
+Created a class "Reports".
+Stores data for only the last move. When NextTurn be updated.
+Add the table "Evs" to store events.
+Created a class "Journal".
+Inserted the robot animation.
+Added ProgressBar in NextTurn
 
 21.09.2015
-- Создать отдельные контроллеры для 
-  - Bunker
-- Очень большая задержка при очистке таблиц. (Переписать запросы)
-  Сделал через хранимую процедуру. Увеличение скорости огромное - стоит переписать все запросы.
+Created a controller "Bunker".
+Very large delay in clearing tables. (Rewrite the query)
+I made through a stored procedure. A huge increase in the speed.
 
 20.09.2015
-- Не работает ProgressBar через SignalR при создании новой игры.
-- Обработать нажатие клавиши "New game"
+Do not work through ProgressBar SignalR when creating a new game - fixed.
+Added a handler for the button "New game".
 
 19.09.2015
-- Сделать кнопку (Next Turn) 
+Did the button "Next Turn".
 
 18.09.2015
-- Создал отдельные контроллеры для
-  - Factory
-
+Created a controller "Factory".
+  
 17.09.2015
-- Создал отдельные контроллеры для
-  - Country
-  - Design
-
-- Сделал определение текущего зарегистрированного пользователя:
-  int userId = WebSecurity.GetUserId(User.Identity.Name);
-
-16.09.2015
-- Продумать _Layout (Структуру) для сайта.
+Created a controller "Country".
+Created a controller "Design".
 
 10.09.2015
-- Добавил избыточное логирование в контроллеры Account и Map
-- Проверил работу NLog в проекте Battle.
-- Ускорить загрузку, найти узкие места. 
-  (Не забываем про UserId в запросах, Может можно это как-то автоматизировать? Multitenancy на уровне записей по ключевому полю?)
+Added logging in controllers Account and Map
+Checked work of NLog.
+Accelerate downloads, found bottlenecks.
 
 09.09.2015
-- Сделать ProgressBar для длительных запросов. (Например начальная инициализация игры или обработка хода)
-  с помощью SignalR
+Did ProgressBar for long running queries. (For example initialization games or processing speed)  using SignalR
 
 08.09.2015
-- При регистрации пользователя создать для него записи в таблице Country. 
-- Также производится первичная инициализация игры, создаются противники, устанавливаются зависимости.
-- Вывести карту с раскрашенными странами
-- Установил в проекте .NET Framework 4.5. Устранил ошибки компиляции.  Нужно для работы SignalR.
+Made the primary initialization of the game are opponents, set dependencies.
+Brought map with colored countries.
+Set in the project .NET Framework 4.5. Eliminate compilation errors. We need to work SignalR.
 
-06.09.2015                               
-- При регистрации нового пользователя он автоматически назначается на роль "Gamer"
-- В контроллер Map добавить авторизацию. Разрешать только пользователям с ролью "Gamer".
-
-02.09.2015
-- Устранены ошибки компилирования.
-- Проект переименован в Battle (Так как GC - это Garbage Collector и возникал конфликт имен)
+06.09.2015
+When registering a new user, it is automatically assigned the role of "Gamer".
+In the Controller Map Add authorization. Allow only users with the role of "Gamer".
 
 01.09.2015
-- Перенести хранимые процедуры
-- Перенести в GC.Domain работу с таблицами БД 
+Moved stored procedures.
+Moved to Battle.Domain work with database tables.
 
 31.08.2015
-- Перенастроить строку подключения авторизации пользователя. 
-- Изменить архитектуру проекта
-  - Создать библиотеку GC.Domain (EF)
-    - Abstract
-    - Concrete
-	- EFArmyRepository
-	- EFBattleMechRepository
-	- EFCountryRepository
-	- EFDesignRepository
-	- EFGamerRepository
-    - Entities
-  - Создать MVC проект GC.WebUI (EF, Ninject, Mock, BootStrap, NLog) 
+Changed the architecture of the project.
+Created a library Battle.Domain (EF).
+Created MVC project Battle.WebUI (EF, Ninject, Mock, BootStrap, NLog).
 
 30.08.2015
-- Создать новую версию проекта (version 1.0)
-- Изменить название проекта на GC
-- Заложить основы мультиязычности. В том числе в структуру базы данных. 
-  Например: (Post[Id] - PostLanguage[Id, PostId, LanguageId, StrField1, StrField2] - Language[Id, Cod, Name])
-  Пока просто добавил два поля с названиями стран в таблицу country
-
-- Перенести таблицы авторизации пользователя из локальной БД в мою БД
-
-- Разобраться, как сделать базу мультитенантной. 
-  Что будет происходить если два пользователя, каждый в своей игре, будут обращаться к одной таблице БД?
-  В каждую таблицу добавить поле UserId.
-  В таблице Country изначально есть инициализационные данные для UserId = 0. Они будут копироваться каждому новому пользователю.
-
+Created a new version of the project (version 1.0).
+Changed the name of the project on the "Battle".
+To lay the foundations of multilingual. Including the database structure.
+Moved the table authorization from the local user database into my database.
+To figure out how to make the base multitenantnoy.
 
 28.08.2015
-Закончил изучение видеокурса
+Finished the study of the video
 https://www.youtube.com/watch?v=MlPYmNVGQEs&list=PLJUoF2h8Z-brW94dTZ-ZIOhjFq90_lt5K
-По его результатам скорретированы планы разработки.
-Решено создать новую версию программы.
+According to the results of the modified development plans.
+It was decided to create a new version of the program.
 
 23.08.2015
-- Установил программу Log2Console. Настроил взаимодействие с NLog
-- Подключил протоколирование через NLog
-
-22.08.2015
-- свойство List<Battlemech> mechsInCurrentCountry сделать свойством страны а не игры
+Install the program Log2Console. I set up a cooperation with NLog
+Connect by logging NLog
 
 20.08.2015
-- Оттестировать ход битвы.
-- Армия победитель определяется не правильно - исправлено.
-- Добавить журналирование
-- В gloval.asax добавил Database.SetInitializer<CountryContext>(null); чтобы снять проблемы при изменении модели
-- Сделать backup ms sql базы
+I have tested the tide of battle.
+Army winner is not determined correctly - fixed.
+Added logging
+In gloval.asax added Database.SetInitializer <CountryContext> (null); to relieve the problem when you change the model
+Make backup ms sql database
 
 02.08.2015
-  - Проанализировать таблицу Army.  
-    - Если армии нескольких игроков оказались в одной стране произвести сражение.
-    - Составить индексированный список игроков (стреляют по очереди)
-    - Составить списки мехов готовых к стрельбам (не умер и еще не стрелял)
-    - Выбрать случайным образом меха который будет стрелять
-    - Выбрать случайным образом армию по которой он будет стрелять
-    - Выбрать случайным образом мехов по которым будет вестись огонь (кол-во мехов равно количеству пушек)
-    - Пушка поражает все цели с броней <= ее калибру.
-    - Убитых мехов вычеркнуть из армии (qnt = 0)
-    - Если вся армия погибла, вычеркнуть игрока из списка. (isEmpty)
-    - Если в списке остался только один игрок - победа
-    - Если победа - привязать эту страну к победителю
-    - Отстрелявшегося меха вычеркнуть из списков готовых к стрельбам.
-    - Передать ход следующему игроку по списку.
-    - Если списки мехов готовых к стрельбе опустели бой заканчивается. Остальные будут сражаться в след. ходу.
+If the army a few players were in the same country to produce a battle.
+Create an indexed list of players (shooting turns)
+Create lists of mechs ready to fire (not dead and has not fired)
+Choose a random mech that will shoot
+Choose a random army on which he will shoot
+Choose a random mechs which will fire (number of bellows equal to the number of guns)
+Cannon hits all the targets with armor <= her caliber.
+Deaths mechs strike from the army (qnt = 0)
+If the whole army was killed, to strike out the player from the list. (isEmpty)
+If the list has only one player - a victory
+If you win - to tie the country to the winner
+Shoot mech removed from the list ready to fire.
+Pass the course to the next player on the list.
+If a list of mechs ready to fire emptied the battle ends. Others will fight in the next turn.
 
 01.08.2015
-- Доделать метод SendMechs
-- Сделать метод NextTurn.
-  - Обработать перемещения.
-    - Двинуть армии компов на территорию других стран.
-    - Объединить все подкрепления из разных стран в одну армию для каждого игрока в каждой стране.
+Finished method SendMechs
 
 31.07.2015
-- Сделал рефакторинг класса Game. Все sql-запросы вынес в отдельные методы.
-- Написать движок для "Бункер".
-  - Показывать всех мехов в бункере. (Army)
-    - Список механизмов 
-    - Название / параметры(кратко) / Страна назначения
-  - Выпадающий список для выбора стран куда отправить воевать.
-    - Если не выбрана мехи остаются дома
-  - Кнопка <Отправить в поход> 
-    - при нажатии мехи помеченные к отправке помещаются в армию привязанную к стране назначения
-    - таким образом можно отправлять мехов в разные страны, пока они не кончатся 
+Made refactoring class Game. All sql-queries make in separate methods.
+Wrote engine for the tab "Bunker".
 
 30.07.2015
--NextTurn
-  - Увеличить запасы руды во всех странах.
-  - Сгенерировать случайным образом дизайн мехов для компов (по одному за ход).
-    - Округляем всегда в меньшую сторону, т.е. отбрасываем после запятой.
-    - Сколько мехов строим? qnt = rnd от 1 до minerals.        
-    - Сколько ресурсов уйдет на одного меха? res = minerals / qnt
-    - каким будет калибр? caliber = rnd от 1 до res 
-    - Сколько пушек поставим? guns = rnd от 1 до ( res / caliber )
-    - Сколько брони навесим? shield = res - guns * caliber
-  - Выполнить производство мехов. 
-    - Проверяем есть ли армия для этого игрока и этой страны, если нет - создаем
-    - увеличиваем количество мехов в таблице Battlemech	
-    - производим мехов по плану на сколько хватит ресурсов.
-    - уменьшаем ресурсы в таблице country
+NextTurn 
+Increase ore reserves worldwide. 
+Randomly generated bellows design for computers (one per turn). 
+Rounding always in the smaller side, ie discard after the decimal point. 
+How many mechs build? qnt = rnd 1 to minerals. 
+What resources will be spent on a mech? res = minerals / qnt 
+what will be the caliber? caliber = rnd 1 to res 
+How many guns deliver? guns = rnd 1 to (res / caliber) 
+How much armor sheds? shield = res - guns * caliber 
+Check whether there is an army for this player and in this country, if not - create 
+Increases the number of mechs in the table Battlemech 
+Building a bellows according to plan how much is enough resources. 
+Reduce the table of country resources
 
 29.07.2015
-- Написать движок для "Завод".
-  - Поставить на производство одного или нескольких мехов. 
-  - Мехи должны строиться по нажатию кнопки.
-- Сделать кнопку "Next Turn"
+Wrote engine for the tab "Factory".
+Make a button "Next Turn".
 
 28.07.2015
-- Завод. Сделать выпадающий список возможных дизайнов.
+Factory. Make it a drop-down list of possible designs.
 
 26.07.2015
-- Написать движок для "Конструкторское бюро".
-  - Создавать и сохранять новый чертеж
-- По окончании создания дизайна меха, нужно выводить под кнопкой картинку меха.
-- Раскрасить компьютерных игроков разными цветами.
+Wrote engine for the tab "Design Bureau".
 
 25.07.2015
-- Написать движок для "Страна".
-  Выводить следующие данные:
-  - Название страны
-  - Кому принадлежит (имя игрока)
-  - Популяция
+Wrote engine for the tab "Country".
 
 24.07.2015
-- При загрузке нарисовать карту мира, в которой все страны будут закрашены цветом своих игроков
-  - При загрузке формировать get ajax-запрос к серверу.
-  - Написать контроллер, который будет обрабатывать этот запрос и возвращать данные в json формате.
-    http://techbrij.com/map-chart-pop-up-asp-net-mvc-jvectormap
-- Научиться закрашивать страну своим цветом по коду страны.
-  http://jvectormap.com/examples/random-colors/
-- Реализовал подменю.
-- Сделал справа от карты панель отображения содержимого бункера. Возможно на этой же панели будут проходить сражения.
+When loading page, i drew a map of the world in which all countries are shaded color of their players
+When downloading generated get ajax-request to the server.
+Written the controller, which processes the request and returns the data in json format.
+http://techbrij.com/map-chart-pop-up-asp-net-mvc-jvectormap
+Learn to paint its color code of the country.
+http://jvectormap.com/examples/random-colors/
+Implemented the submenu.
+Make the right of the map display panel content hopper. 
     
 21.07.2015
-- В БД настроить поля null, установить зависимости между таблицами.
-- Для каждой таблицы создать свой класс с привязкой Entity Framework.
-- Создать контексты для классов.
-- Добавить класс Game, который будет управлять игрой и хранить текущее состояние.
-- Добавил инициализацию игроков.
-  - Игра однопользовательская, т.е. один человек.
-  - В начале игры количество игроков равно количеству стран (176).
-  - За остальные страны играют компьютеры.
-  - Цвет человека - красный, у остальных пока зеленый.
-  - Численность населения во всех странах одинакова.
+In the database set up field null and set the relationship between the tables.
+For each table I created a class-bound Entity Framework.
+Created a context for the classes.
+Added Class Game, which will control the game and keep the current state.
+Added initialization players.
 
 20.07.2015
-- Подключил библиотеку jvectormap к asp.net проекту.
+Connected the library jvectormap to the project.
 
 18.07.2015
-- Импортировал из excel данные в таблицу country
-- Сформировал файл pop-data.js с данными по реальному количеству населения.
-  Закрасил страны синим цветом разной интенсивности. Чем меньше населения тем бледнее.
+Import data from excel spreadsheet in country
+Generated pop-data.js file with the data on the real number of the population.
+Shaded country blue varying intensity. The smaller the population the paler.
 
 17.07.2015
-- Создана база данных игры.
-- Подготовил в excel таблицу стран мира с количеством населения.
+Created the database of the game.
+Prepared to excel spreadsheet with the number of the world population.
 
 15.07.2015
-- Создан новый проект MVC.
-- Написана легенда игры на базе вырезок из Galaxy Times.
-- Разработано описание функционала (игровой механики) игры.
-- Подготовлено описание необходимых таблиц.
-
+Created the new project MVC.
+Wrote the legend of the game based on clippings from Galaxy Times.
+Developed a functional description (game mechanics) of the game.
+Prepared description of the required tables.
 
 
 Status API Training Shop Blog About Pricing
